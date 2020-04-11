@@ -10,6 +10,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "compromise": "^13.1.1",
+    "compromise-paragraphs": "0.0.4",
+    "compromise-sentences": "0.0.5",
     "react": "16.11.0",
     "react-native": "0.62.1",
     "realm": "^4.0.0-beta.0"
