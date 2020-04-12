@@ -5,6 +5,7 @@ class Document {
     name: 'Document',
     properties: {
       raw: 'string',
+      normal: 'string',
       paragraphs: 'Paragraph[]'
     }
   }
