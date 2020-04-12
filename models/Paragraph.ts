@@ -5,6 +5,7 @@ class Paragraph {
     name: 'Paragraph',
     properties: {
       raw: 'string',
+      normal: 'string',
       sentences: 'Sentence[]'
     }
   }
