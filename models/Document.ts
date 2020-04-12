@@ -22,7 +22,19 @@ class Document {
 
   private static normalize(document: string): string {
     const doc = nlp(document)
-    doc.normalize('heavy')
+    doc.normalize({
+      whitespace: true,
+      case: false,
+      punctuation: false,
+      uncode: false,
+      contractions: true,
+      acronyms: true,
+      parentheses: false,
+      possessives: false,
+      plurals: false,
+      verbs: false,
+      honorifics: false
+    })
     return doc.out('text')
   }
 }
