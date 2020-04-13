@@ -1,4 +1,4 @@
-import nlp from 'compromise'
+import nlp from 'compromise';
 
 class Normalizer {
   private static readonly normalizationOptions: object = {
@@ -12,14 +12,14 @@ class Normalizer {
     possessives: false,
     plurals: false,
     verbs: false,
-    honorifics: false
+    honorifics: false,
   };
 
   public static normalize(document: string): string {
-    const doc = nlp(document)
-    doc.normalize(Normalizer.normalizationOptions)
-    return doc.out('text')
+    const doc = nlp(document);
+    doc.normalize(Normalizer.normalizationOptions);
+    return doc.out('text');
   }
 }
 
-export default Normalizer
+export default Normalizer;

@@ -1,4 +1,4 @@
-import Sentence from "../models/Sentence";
+import Sentence from '../models/Sentence';
 
 describe('Sentence model unit test', () => {
   test('normalize sentence', () => {
@@ -16,14 +16,14 @@ describe('Sentence model unit test', () => {
     const expectResults = [
       `Hello.`,
       `I'm a developer of this application.`,
-      `This application isn't yet completed, but it will be amazing one if it is completed.`
+      `This application isn't yet completed, but it will be amazing one if it is completed.`,
     ];
 
     const sentences = Sentence.getSentences(testDocument);
 
-    expect(sentences.length).toBe(expectResults.length)
+    expect(sentences.length).toBe(expectResults.length);
 
-    for(let i = 0; i < sentences.length; ++i) {
+    for (let i = 0; i < sentences.length; ++i) {
       expect(sentences[i].raw).toBe(expectResults[i]);
     }
   });

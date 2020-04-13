@@ -1,4 +1,4 @@
-import Word from "../models/Word";
+import Word from '../models/Word';
 
 describe('Word model unit test', () => {
   test('normalize word', () => {
@@ -16,14 +16,14 @@ describe('Word model unit test', () => {
       `developer`,
       `of`,
       `this`,
-      `application`
+      `application`,
     ];
 
     const words = Word.getWords(testDocument);
 
     expect(words.length).toBe(expectResults.length);
 
-    for(let i = 0; i < words.length; ++i) {
+    for (let i = 0; i < words.length; ++i) {
       expect(words[i].raw).toBe(expectResults[i]);
     }
   });

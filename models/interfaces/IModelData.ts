@@ -3,4 +3,4 @@ interface IModelData {
   readonly normal: string;
 }
 
-export default IModelData
+export default IModelData;

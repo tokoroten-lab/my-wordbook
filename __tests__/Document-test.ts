@@ -1,4 +1,4 @@
-import Document from "../models/Document";
+import Document from '../models/Document';
 
 describe('Document model unit test', () => {
   test('normalize document', () => {
