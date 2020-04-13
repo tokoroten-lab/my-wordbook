@@ -1,6 +1,9 @@
 /// <reference types="realm" />
 
-class Sentence {
+import IModelData from './interfaces/IModelData';
+import Normalizer from './utils/Normalizer';
+
+class Sentence implements IModelData {
   public static schema: Realm.ObjectSchema = {
     name: 'Sentence',
     properties: {
@@ -8,9 +11,15 @@ class Sentence {
       normal: 'string',
       words: 'Word[]'
     }
-  }
+  };
 
-  constructor() {}
+  public readonly raw: string;
+  public readonly normal: string;
+
+  constructor(sentence: string) {
+    this.raw = sentence;
+    this.normal = Normalizer.normalize(sentence);
+  }
 }
 
-export default Sentence
+export default Sentence;
