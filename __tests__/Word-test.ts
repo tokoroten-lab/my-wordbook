@@ -8,15 +8,16 @@ describe('Word model unit test', () => {
   });
 
   test('split words', () => {
-    const testDocument = `I'm a developer of this application.`;
+    const testDocument = "I'm a developer of this application.";
+
     const expectResults = [
-      `I`,
+      'I',
       'am',
-      `a`,
-      `developer`,
-      `of`,
-      `this`,
-      `application`,
+      'a',
+      'developer',
+      'of',
+      'this',
+      'application',
     ];
 
     const words = Word.getWords(testDocument);
