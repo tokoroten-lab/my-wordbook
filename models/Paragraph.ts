@@ -19,11 +19,7 @@ class Paragraph implements IModelData {
 
   constructor(paragraph: string) {
     this.raw = paragraph;
-    this.normal = Paragraph.normalize(paragraph);
-  }
-
-  private static normalize(document: string): string {
-    return Normalizer.normalize(document);
+    this.normal = Normalizer.normalize(paragraph);
   }
 }
 

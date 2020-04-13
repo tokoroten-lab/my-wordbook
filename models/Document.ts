@@ -19,11 +19,7 @@ class Document implements IModelData {
 
   constructor(document: string) {
     this.raw = document
-    this.normal = Document.normalize(document)
-  }
-
-  private static normalize(document: string): string {
-    return Normalizer.normalize(document)
+    this.normal = Normalizer.normalize(document)
   }
 }
 
