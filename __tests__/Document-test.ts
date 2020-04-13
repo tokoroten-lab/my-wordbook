@@ -2,8 +2,14 @@ import Document from "../models/Document";
 
 describe('Normalize document', () => {
   test('normalize', () => {
-    const testDocument = `I'm  a developer of this application, this application has been developed only by me... (not completed)`;
-    const expectResult = `I am a developer of this application, this application has been developed only by me... (not completed)`;
+    const testDocument = `
+    This application uses the statistics information to evaluate the words.
+
+    It analyzes appearance frequency and correct answer rate, personalize test. A word that is high appearance frequency and incorrect answer rate is evaluated highly. It is important for you that the evaluation value is high.
+
+    You can take the test that sets problems of only word that the evaluation is high.
+    `;
+    const expectResult = `This application uses the statistics information to evaluate the words. It analyzes appearance frequency and correct answer rate, personalize test. A word that is high appearance frequency and incorrect answer rate is evaluated highly. It is important for you that the evaluation value is high. You can take the test that sets problems of only word that the evaluation is high.`;
 
     const normal = new Document(testDocument).normal;
 
