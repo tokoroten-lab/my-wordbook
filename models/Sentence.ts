@@ -13,8 +13,8 @@ class Sentence implements IModelData {
     properties: {
       raw: 'string',
       normal: 'string',
-      words: 'Word[]'
-    }
+      words: 'Word[]',
+    },
   };
 
   public readonly raw: string;
@@ -26,9 +26,12 @@ class Sentence implements IModelData {
   }
 
   public static getSentences(text: string): Sentence[] {
-    return nlpEx(text).sentences().json().map((sentence: any) => {
-      return new Sentence(sentence.text);
-    });
+    return nlpEx(text)
+      .sentences()
+      .json()
+      .map((sentence: any) => {
+        return new Sentence(sentence.text);
+      });
   }
 }
 
