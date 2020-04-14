@@ -28,6 +28,16 @@ class Sentence implements IModelData {
     this.words = Word.getWords(this.raw);
   }
 
+  public get json(): object {
+    return {
+      raw: this.raw,
+      normal: this.normal,
+      words: this.words.map((word: Word) => {
+        return word.json;
+      }),
+    };
+  }
+
   public static getSentences(text: string): Sentence[] {
     return nlpEx(text)
       .sentences()
