@@ -28,6 +28,16 @@ class Paragraph implements IModelData {
     this.sentences = Sentence.getSentences(this.raw);
   }
 
+  public get json(): object {
+    return {
+      raw: this.raw,
+      normal: this.normal,
+      sentences: this.sentences.map((sentence: Sentence) => {
+        return sentence.json;
+      }),
+    };
+  }
+
   public static getParagraphs(text: string): Paragraph[] {
     return nlpEx(text)
       .paragraphs()

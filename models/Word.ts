@@ -20,6 +20,13 @@ class Word implements IModelData {
     this.normal = normal;
   }
 
+  public get json(): object {
+    return {
+      raw: this.raw,
+      normal: this.normal,
+    };
+  }
+
   public static getWords(text: string): Word[] {
     return nlp(text)
       .termList()

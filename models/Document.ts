@@ -23,6 +23,16 @@ class Document implements IModelData {
     this.normal = Normalizer.normalize(document);
     this.paragraphs = Paragraph.getParagraphs(this.raw);
   }
+
+  public get json(): object {
+    return {
+      raw: this.raw,
+      normal: this.normal,
+      paragraphs: this.paragraphs.map((paragraph: Paragraph) => {
+        return paragraph.json;
+      }),
+    };
+  }
 }
 
 export default Document;

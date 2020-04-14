@@ -4,6 +4,7 @@ import nlp from 'compromise';
 import sentences from 'compromise-sentences';
 import IModelData from './interfaces/IModelData';
 import Normalizer from './utils/Normalizer';
+import Word from './Word';
 
 const nlpEx = nlp.extend(sentences);
 
@@ -19,10 +20,22 @@ class Sentence implements IModelData {
 
   public readonly raw: string;
   public readonly normal: string;
+  public readonly words: Word[];
 
   constructor(sentence: string) {
     this.raw = sentence;
     this.normal = Normalizer.normalize(sentence);
+    this.words = Word.getWords(this.raw);
+  }
+
+  public get json(): object {
+    return {
+      raw: this.raw,
+      normal: this.normal,
+      words: this.words.map((word: Word) => {
+        return word.json;
+      }),
+    };
   }
 
   public static getSentences(text: string): Sentence[] {
