@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, SafeAreaView} from 'react-native';
 import Document from '../../models/Document';
 import ParagraphTree from './ParagraphTree';
 
@@ -16,7 +16,7 @@ function DocumentTree(props: Props) {
   }, [props.documentTree]);
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         style={styles.paragraphList}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -27,12 +27,13 @@ function DocumentTree(props: Props) {
         keyExtractor={(_, index) => String(index)}
         initialNumToRender={props.initialNumToRender}
       />
-    </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 16,
   },
   paragraphList: {
