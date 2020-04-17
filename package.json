@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-navigation/native": "^5.1.5",
     "compromise": "^13.1.1",
     "compromise-paragraphs": "0.0.4",
     "compromise-sentences": "0.0.5",
