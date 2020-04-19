@@ -1,16 +1,22 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import RegisterView from './components/Register/RegisterView';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import HomeScreen from './components/Home/HomeScreen';
+import TrainScreen from './components/Train/TrainScreen';
+import StockScreen from './components/Stock/StockScreen';
+import ListScreen from './components/List/ListScreen';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Register" component={RegisterView} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Train" component={TrainScreen} />
+        <Drawer.Screen name="Stock" component={StockScreen} />
+        <Drawer.Screen name="List" component={ListScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
