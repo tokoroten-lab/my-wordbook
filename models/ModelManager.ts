@@ -14,7 +14,7 @@ class ModelManager {
     });
   }
 
-  public static get instance() {
+  public static get instance(): ModelManager {
     if (!ModelManager._instance) {
       ModelManager._instance = new ModelManager();
     }
@@ -22,14 +22,18 @@ class ModelManager {
     return ModelManager._instance;
   }
 
-  public stock(document: Document) {
+  public stock(document: Document): object {
+    let stockedDocument = {};
+
     this.realm.write(() => {
-      const stockedDocument = this.realm.create('Document', document.json);
+      stockedDocument = this.realm.create('Document', document.json);
       console.log(stockedDocument);
     });
+
+    return stockedDocument;
   }
 
-  public deleteAll() {
+  public deleteAll(): void {
     this.realm.write(() => {
       this.realm.deleteAll();
     });
