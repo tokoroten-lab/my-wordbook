@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Button} from 'react-native';
+import modelManager from '../../models/ModelManager';
 import Document from '../../models/Document';
 import StockTextInput from './StockTextInput';
 import DocumentTree from './DocumentTree';
@@ -40,17 +41,19 @@ function StockScreen() {
             title="Stock"
             color="chocolate"
             accessibilityLabel="Stock document tree into database"
-            onPress={() => onStockButton()}
+            onPress={() => {
+              if (documentTree.raw !== '') {
+                modelManager.stock(documentTree);
+                setText('');
+                setDocumentTree(new Document(''));
+              }
+            }}
           />
         </View>
       </View>
       <DocumentTree documentTree={documentTree} initialNumToRender={10} />
     </View>
   );
-}
-
-function onStockButton() {
-  console.log('Stock button pressed');
 }
 
 const styles = StyleSheet.create({
