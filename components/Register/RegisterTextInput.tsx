@@ -21,7 +21,6 @@ function RegisterTextInput(props: Props) {
       placeholder="Paste text here to register!"
       value={text}
       defaultValue={props.defaultValue}
-      autoFocus
       multiline
       maxLength={props.maxLength}
       underlineColorAndroid="chocolate"
