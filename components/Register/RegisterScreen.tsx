@@ -4,7 +4,7 @@ import Document from '../../models/Document';
 import RegisterTextInput from './RegisterTextInput';
 import DocumentTree from './DocumentTree';
 
-function RegisterView() {
+function RegisterScreen() {
   const [text, setText] = useState('');
   const [documentTree, setDocumentTree] = useState(new Document(''));
   return (
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterView;
+export default RegisterScreen;

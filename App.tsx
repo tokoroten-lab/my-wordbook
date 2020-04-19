@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from './components/Home/HomeScreen';
-import RegisterView from './components/Register/RegisterView';
+import RegisterScreen from './components/Register/RegisterScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -11,7 +11,7 @@ const App = () => {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Register" component={RegisterView} />
+        <Drawer.Screen name="Register" component={RegisterScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
