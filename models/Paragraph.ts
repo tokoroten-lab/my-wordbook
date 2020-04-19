@@ -15,6 +15,11 @@ class Paragraph implements IModelData {
       raw: 'string',
       normal: 'string',
       sentences: 'Sentence[]',
+      documents: {
+        type: 'linkingObjects',
+        objectType: 'Document',
+        property: 'paragraphs',
+      },
     },
   };
 
