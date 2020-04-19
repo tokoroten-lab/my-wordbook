@@ -28,6 +28,12 @@ class ModelManager {
       console.log(stockedDocument);
     });
   }
+
+  public deleteAll() {
+    this.realm.write(() => {
+      this.realm.deleteAll();
+    });
+  }
 }
 
 export default ModelManager.instance;
