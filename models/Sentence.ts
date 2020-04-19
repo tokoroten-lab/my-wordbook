@@ -15,6 +15,11 @@ class Sentence implements IModelData {
       raw: 'string',
       normal: 'string',
       words: 'Word[]',
+      paragraphs: {
+        type: 'linkingObjects',
+        objectType: 'Paragraph',
+        property: 'sentences',
+      },
     },
   };
 

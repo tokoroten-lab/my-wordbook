@@ -9,6 +9,11 @@ class Word implements IModelData {
     properties: {
       raw: 'string',
       normal: 'string',
+      sentences: {
+        type: 'linkingObjects',
+        objectType: 'Sentence',
+        property: 'words',
+      },
     },
   };
 
