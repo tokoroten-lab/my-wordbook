@@ -37,10 +37,10 @@ function StockScreen() {
         </View>
         <View style={styles.button}>
           <Button
-            title="Register"
+            title="Stock"
             color="chocolate"
-            accessibilityLabel="Register document tree into database"
-            onPress={() => onRegisterButton()}
+            accessibilityLabel="Stock document tree into database"
+            onPress={() => onStockButton()}
           />
         </View>
       </View>
@@ -49,8 +49,8 @@ function StockScreen() {
   );
 }
 
-function onRegisterButton() {
-  console.log('Register button pressed');
+function onStockButton() {
+  console.log('Stock button pressed');
 }
 
 const styles = StyleSheet.create({
