@@ -2,8 +2,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from './components/Home/HomeScreen';
-import StockScreen from './components/Stock/StockScreen';
 import TrainScreen from './components/Train/TrainScreen';
+import StockScreen from './components/Stock/StockScreen';
 import ListScreen from './components/List/ListScreen';
 
 const Drawer = createDrawerNavigator();
