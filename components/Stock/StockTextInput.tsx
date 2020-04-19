@@ -8,7 +8,7 @@ interface Props {
   onChangeText?: (text: string) => void;
 }
 
-function RegisterTextInput(props: Props) {
+function StockTextInput(props: Props) {
   const [text, setText] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function RegisterTextInput(props: Props) {
   return (
     <TextInput
       style={getDynamicTextInputStyle(text).style}
-      placeholder="Paste text here to register!"
+      placeholder="Paste text here to stock!"
       value={text}
       defaultValue={props.defaultValue}
       multiline
@@ -43,4 +43,4 @@ function getDynamicTextInputStyle(text: string) {
   });
 }
 
-export default RegisterTextInput;
+export default StockTextInput;
