@@ -3,6 +3,7 @@ import Document from './Document';
 import Pragraph from './Paragraph';
 import Sentence from './Sentence';
 import Word from './Word';
+import WordInfoSchema from './WordInfo';
 
 class ModelManager {
   private static _instance: ModelManager;
@@ -10,7 +11,13 @@ class ModelManager {
 
   private constructor() {
     this.realm = new Realm({
-      schema: [Document.schema, Pragraph.schema, Sentence.schema, Word.schema],
+      schema: [
+        Document.schema,
+        Pragraph.schema,
+        Sentence.schema,
+        Word.schema,
+        WordInfoSchema,
+      ],
     });
   }
 
