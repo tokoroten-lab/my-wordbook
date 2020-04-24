@@ -2,8 +2,9 @@
 
 const WordInfoSchema: Realm.ObjectSchema = {
   name: 'WordInfo',
+  primaryKey: 'word',
   properties: {
-    normal: 'string',
+    word: 'string',
     count: {
       type: 'int',
       default: 0,
