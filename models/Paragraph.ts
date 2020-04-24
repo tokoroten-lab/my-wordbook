@@ -3,12 +3,14 @@
 import nlp from 'compromise';
 import paragraphs from 'compromise-paragraphs';
 import IModelData from './interfaces/IModelData';
+import IWordsGetter from './interfaces/IWordsGetter';
 import Normalizer from './utils/Normalizer';
 import Sentence from './Sentence';
+import Word from './Word';
 
 const nlpEx = nlp.extend(paragraphs);
 
-class Paragraph implements IModelData {
+class Paragraph implements IModelData, IWordsGetter {
   public static schema: Realm.ObjectSchema = {
     name: 'Paragraph',
     properties: {
@@ -41,6 +43,13 @@ class Paragraph implements IModelData {
         return sentence.json;
       }),
     };
+  }
+
+  public get words(): Word[] {
+    return this.sentences.reduce((prev: Word[], current: Sentence) => {
+      prev.push(...current.words);
+      return prev;
+    }, []);
   }
 
   public static getParagraphs(text: string): Paragraph[] {
