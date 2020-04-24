@@ -3,12 +3,13 @@
 import nlp from 'compromise';
 import sentences from 'compromise-sentences';
 import IModelData from './interfaces/IModelData';
+import IWordsGetter from './interfaces/IWordsGetter';
 import Normalizer from './utils/Normalizer';
 import Word from './Word';
 
 const nlpEx = nlp.extend(sentences);
 
-class Sentence implements IModelData {
+class Sentence implements IModelData, IWordsGetter {
   public static schema: Realm.ObjectSchema = {
     name: 'Sentence',
     properties: {

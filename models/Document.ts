@@ -1,10 +1,12 @@
 /// <reference types="realm" />
 
 import IModelData from './interfaces/IModelData';
+import IWordsGetter from './interfaces/IWordsGetter';
 import Normalizer from './utils/Normalizer';
 import Paragraph from './Paragraph';
+import Word from './Word';
 
-class Document implements IModelData {
+class Document implements IModelData, IWordsGetter {
   public static schema: Realm.ObjectSchema = {
     name: 'Document',
     properties: {
@@ -32,6 +34,13 @@ class Document implements IModelData {
         return paragraph.json;
       }),
     };
+  }
+
+  public get words(): Word[] {
+    return this.paragraphs.reduce((prev: Word[], current: Paragraph) => {
+      prev.push(...current.words);
+      return prev;
+    }, []);
   }
 }
 
