@@ -2,8 +2,9 @@
 
 import nlp from 'compromise';
 import IModelData from './interfaces/IModelData';
+import IWordsGetter from './interfaces/IWordsGetter';
 
-class Word implements IModelData {
+class Word implements IModelData, IWordsGetter {
   public static schema: Realm.ObjectSchema = {
     name: 'Word',
     properties: {
@@ -30,6 +31,10 @@ class Word implements IModelData {
       raw: this.raw,
       normal: this.normal,
     };
+  }
+
+  public get words(): Word[] {
+    return [this];
   }
 
   public static getWords(text: string): Word[] {
