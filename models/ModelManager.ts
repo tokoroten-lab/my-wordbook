@@ -31,6 +31,11 @@ class ModelManager {
 
   public stock(document: Document): object {
     let stockedDocument = {};
+    const words: Word[] = document.words;
+
+    words.forEach((word: Word) => {
+      this.updateWordInfo(word);
+    });
 
     this.realm.write(() => {
       stockedDocument = this.realm.create('Document', document.json);
@@ -44,6 +49,25 @@ class ModelManager {
     this.realm.write(() => {
       this.realm.deleteAll();
     });
+  }
+
+  private updateWordInfo(word: Word): void {
+    if (!this.getWordInfo(word)) {
+      this.realm.write(() => {
+        this.realm.create('WordInfo', {
+          word: word.normal,
+        });
+      });
+    }
+
+    this.realm.write(() => {
+      const wordInfo: any = this.getWordInfo(word);
+      ++wordInfo.count;
+    });
+  }
+
+  private getWordInfo(word: Word): Realm.Object | undefined {
+    return this.realm.objectForPrimaryKey('WordInfo', word.normal);
   }
 }
 
