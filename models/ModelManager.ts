@@ -70,7 +70,7 @@ class ModelManager {
     });
   }
 
-  private getWordInfo(word: Word): Realm.Object | undefined {
+  private getWordInfo(word: Word): (Realm.Object & WordInfoType) | undefined {
     return this.realm.objectForPrimaryKey('WordInfo', word.normal);
   }
 }
