@@ -3,7 +3,7 @@ import Document from './Document';
 import Pragraph from './Paragraph';
 import Sentence from './Sentence';
 import Word from './Word';
-import WordInfoSchema from './WordInfo';
+import WordInfoSchema, {WordInfoType} from './WordInfo';
 
 class ModelManager {
   private static _instance: ModelManager;
@@ -49,6 +49,10 @@ class ModelManager {
     this.realm.write(() => {
       this.realm.deleteAll();
     });
+  }
+
+  public getWordInfoList(): Realm.Results<Realm.Object & WordInfoType> {
+    return this.realm.objects('WordInfo');
   }
 
   private updateWordInfo(word: Word): void {
