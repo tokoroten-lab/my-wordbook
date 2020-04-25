@@ -3,7 +3,7 @@ import Document from './Document';
 import Pragraph from './Paragraph';
 import Sentence from './Sentence';
 import Word from './Word';
-import WordInfoSchema from './WordInfo';
+import WordInfoSchema, {WordInfoType} from './WordInfo';
 
 class ModelManager {
   private static _instance: ModelManager;
@@ -51,6 +51,10 @@ class ModelManager {
     });
   }
 
+  public getWordInfoList(): Realm.Results<Realm.Object & WordInfoType> {
+    return this.realm.objects('WordInfo');
+  }
+
   private updateWordInfo(word: Word): void {
     if (!this.getWordInfo(word)) {
       this.realm.write(() => {
@@ -66,7 +70,7 @@ class ModelManager {
     });
   }
 
-  private getWordInfo(word: Word): Realm.Object | undefined {
+  private getWordInfo(word: Word): (Realm.Object & WordInfoType) | undefined {
     return this.realm.objectForPrimaryKey('WordInfo', word.normal);
   }
 }

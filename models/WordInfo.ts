@@ -1,5 +1,12 @@
 /// <reference types="realm" />
 
+export type WordInfoType = {
+  word: string;
+  count: number;
+  recognitionLevel: number;
+  unrecognitionLevel: number;
+};
+
 const WordInfoSchema: Realm.ObjectSchema = {
   name: 'WordInfo',
   primaryKey: 'word',
