@@ -7,24 +7,26 @@ export type WordInfoType = {
   unrecognitionLevel: number;
 };
 
-const WordInfoSchema: Realm.ObjectSchema = {
-  name: 'WordInfo',
-  primaryKey: 'word',
-  properties: {
-    word: 'string',
-    count: {
-      type: 'int',
-      default: 0,
+class WordInfo {
+  public static schema: Realm.ObjectSchema = {
+    name: 'WordInfo',
+    primaryKey: 'word',
+    properties: {
+      word: 'string',
+      count: {
+        type: 'int',
+        default: 0,
+      },
+      recognitionLevel: {
+        type: 'int',
+        default: 0,
+      },
+      unrecognitionLevel: {
+        type: 'int',
+        default: 0,
+      },
     },
-    recognitionLevel: {
-      type: 'int',
-      default: 0,
-    },
-    unrecognitionLevel: {
-      type: 'int',
-      default: 0,
-    },
-  },
-};
+  };
+}
 
-export default WordInfoSchema;
+export default WordInfo;

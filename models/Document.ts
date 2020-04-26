@@ -1,12 +1,11 @@
 /// <reference types="realm" />
 
-import IModelData from './interfaces/IModelData';
-import IWordsGetter from './interfaces/IWordsGetter';
+import IModelDocumentNode from './interfaces/IModelDocumentNode';
 import Normalizer from './utils/Normalizer';
 import Paragraph from './Paragraph';
 import Word from './Word';
 
-class Document implements IModelData, IWordsGetter {
+class Document implements IModelDocumentNode {
   public static schema: Realm.ObjectSchema = {
     name: 'Document',
     properties: {
