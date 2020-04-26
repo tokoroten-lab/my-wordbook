@@ -2,15 +2,14 @@
 
 import nlp from 'compromise';
 import paragraphs from 'compromise-paragraphs';
-import IModelData from './interfaces/IModelData';
-import IWordsGetter from './interfaces/IWordsGetter';
+import IModelDocumentNode from './interfaces/IModelDocumentNode';
 import Normalizer from './utils/Normalizer';
 import Sentence from './Sentence';
 import Word from './Word';
 
 const nlpEx = nlp.extend(paragraphs);
 
-class Paragraph implements IModelData, IWordsGetter {
+class Paragraph implements IModelDocumentNode {
   public static schema: Realm.ObjectSchema = {
     name: 'Paragraph',
     properties: {
