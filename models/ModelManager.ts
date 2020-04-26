@@ -5,6 +5,8 @@ import Sentence from './Sentence';
 import Word from './Word';
 import WordInfo, {WordInfoType} from './WordInfo';
 
+type RealmWordInfoType = Realm.Object & WordInfoType;
+
 class ModelManager {
   private static _instance: ModelManager;
   private readonly realm: Realm;
@@ -51,8 +53,47 @@ class ModelManager {
     });
   }
 
-  public getWordInfoList(): Realm.Results<Realm.Object & WordInfoType> {
-    return this.realm.objects('WordInfo');
+  public getWordInfoList(
+    sortingAxes: {
+      name:
+        | 'word'
+        | 'count'
+        | 'recognitionLevel'
+        | 'unrecognitionLevel'
+        | 'evaluation';
+      isDescend: boolean;
+    }[] = [],
+  ): RealmWordInfoType[] {
+    const wordInfoList: RealmWordInfoType[] = this.realm
+      .objects<WordInfoType>('WordInfo')
+      .slice();
+
+    wordInfoList.sort((lhs: RealmWordInfoType, rhs: RealmWordInfoType) => {
+      for (let i = 0; i < sortingAxes.length; ++i) {
+        const {name, isDescend} = sortingAxes[i];
+
+        if (name === 'evaluation') {
+          const lhsEval: number = WordInfo.calcEvaluationFromWordInfo(lhs);
+          const rhsEval: number = WordInfo.calcEvaluationFromWordInfo(rhs);
+
+          if (lhsEval < rhsEval) {
+            return isDescend ? 1 : -1;
+          } else if (lhsEval > rhsEval) {
+            return isDescend ? -1 : 1;
+          }
+        } else {
+          if (lhs[name] < rhs[name]) {
+            return isDescend ? 1 : -1;
+          } else if (lhs[name] > rhs[name]) {
+            return isDescend ? -1 : 1;
+          }
+        }
+      }
+
+      return 0;
+    });
+
+    return wordInfoList;
   }
 
   private updateWordInfo(word: Word): void {
