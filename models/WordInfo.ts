@@ -27,6 +27,17 @@ class WordInfo {
       },
     },
   };
+
+  public static calcEvaluationFromWordInfo(wordInfo: WordInfoType): number {
+    const sumOfRecognition: number =
+      wordInfo.recognitionLevel + wordInfo.unrecognitionLevel;
+
+    // +1 to avoid zero dividing
+    const recognitionCoeff: number =
+      (wordInfo.unrecognitionLevel + 1) / (sumOfRecognition + 1);
+
+    return wordInfo.count * recognitionCoeff;
+  }
 }
 
 export default WordInfo;

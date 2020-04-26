@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
-import {WordInfoType} from 'models/WordInfo';
+import WordInfo, {WordInfoType} from '../../models/WordInfo';
 
 interface Props {
   wordInfo: WordInfoType;
@@ -13,6 +13,9 @@ function WordInfoView(props: Props) {
       <Text>Appear count: {props.wordInfo.count}</Text>
       <Text>Recognition level: {props.wordInfo.recognitionLevel}</Text>
       <Text>Unrecognition level: {props.wordInfo.unrecognitionLevel}</Text>
+      <Text>
+        Evaluation: {WordInfo.calcEvaluationFromWordInfo(props.wordInfo)}
+      </Text>
     </SafeAreaView>
   );
 }
