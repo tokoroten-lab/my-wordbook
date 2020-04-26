@@ -5,6 +5,20 @@ import Sentence from './Sentence';
 import Word from './Word';
 import WordInfo, {WordInfoType} from './WordInfo';
 
+type RealmWordInfoType = Realm.Object & WordInfoType;
+
+export type SortingAxisNameType =
+  | 'word'
+  | 'count'
+  | 'recognitionLevel'
+  | 'unrecognitionLevel'
+  | 'evaluation';
+
+export type SortingAxisType = {
+  name: SortingAxisNameType;
+  isDescend: boolean;
+};
+
 class ModelManager {
   private static _instance: ModelManager;
   private readonly realm: Realm;
@@ -51,8 +65,39 @@ class ModelManager {
     });
   }
 
-  public getWordInfoList(): Realm.Results<Realm.Object & WordInfoType> {
-    return this.realm.objects('WordInfo');
+  public getWordInfoList(
+    sortingAxes: SortingAxisType[] = [],
+  ): RealmWordInfoType[] {
+    const wordInfoList: RealmWordInfoType[] = this.realm
+      .objects<WordInfoType>('WordInfo')
+      .slice();
+
+    wordInfoList.sort((lhs: RealmWordInfoType, rhs: RealmWordInfoType) => {
+      for (let i = 0; i < sortingAxes.length; ++i) {
+        const {name, isDescend} = sortingAxes[i];
+
+        if (name === 'evaluation') {
+          const lhsEval: number = WordInfo.calcEvaluationFromWordInfo(lhs);
+          const rhsEval: number = WordInfo.calcEvaluationFromWordInfo(rhs);
+
+          if (lhsEval < rhsEval) {
+            return isDescend ? 1 : -1;
+          } else if (lhsEval > rhsEval) {
+            return isDescend ? -1 : 1;
+          }
+        } else {
+          if (lhs[name] < rhs[name]) {
+            return isDescend ? 1 : -1;
+          } else if (lhs[name] > rhs[name]) {
+            return isDescend ? -1 : 1;
+          }
+        }
+      }
+
+      return 0;
+    });
+
+    return wordInfoList;
   }
 
   private updateWordInfo(word: Word): void {
@@ -65,12 +110,12 @@ class ModelManager {
     }
 
     this.realm.write(() => {
-      const wordInfo: any = this.getWordInfo(word);
+      const wordInfo: RealmWordInfoType = this.getWordInfo(word)!;
       ++wordInfo.count;
     });
   }
 
-  private getWordInfo(word: Word): (Realm.Object & WordInfoType) | undefined {
+  private getWordInfo(word: Word): RealmWordInfoType | undefined {
     return this.realm.objectForPrimaryKey('WordInfo', word.normal);
   }
 }
