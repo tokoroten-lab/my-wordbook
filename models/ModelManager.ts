@@ -7,6 +7,18 @@ import WordInfo, {WordInfoType} from './WordInfo';
 
 type RealmWordInfoType = Realm.Object & WordInfoType;
 
+export type SortingAxisNameType =
+  | 'word'
+  | 'count'
+  | 'recognitionLevel'
+  | 'unrecognitionLevel'
+  | 'evaluation';
+
+export type SortingAxisType = {
+  name: SortingAxisNameType;
+  isDescend: boolean;
+};
+
 class ModelManager {
   private static _instance: ModelManager;
   private readonly realm: Realm;
@@ -54,15 +66,7 @@ class ModelManager {
   }
 
   public getWordInfoList(
-    sortingAxes: {
-      name:
-        | 'word'
-        | 'count'
-        | 'recognitionLevel'
-        | 'unrecognitionLevel'
-        | 'evaluation';
-      isDescend: boolean;
-    }[] = [],
+    sortingAxes: SortingAxisType[] = [],
   ): RealmWordInfoType[] {
     const wordInfoList: RealmWordInfoType[] = this.realm
       .objects<WordInfoType>('WordInfo')
@@ -106,12 +110,12 @@ class ModelManager {
     }
 
     this.realm.write(() => {
-      const wordInfo: any = this.getWordInfo(word);
+      const wordInfo: RealmWordInfoType = this.getWordInfo(word)!;
       ++wordInfo.count;
     });
   }
 
-  private getWordInfo(word: Word): (Realm.Object & WordInfoType) | undefined {
+  private getWordInfo(word: Word): RealmWordInfoType | undefined {
     return this.realm.objectForPrimaryKey('WordInfo', word.normal);
   }
 }
