@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Button} from 'react-native';
+import {StyleSheet, Button, SafeAreaView} from 'react-native';
 import modelManager from '../../models/ModelManager';
 import Document from '../../models/Document';
 import StockTextInput from './StockTextInput';
@@ -8,24 +8,25 @@ import DocumentTree from './DocumentTree';
 function StockScreen() {
   const [text, setText] = useState('');
   const [documentTree, setDocumentTree] = useState(new Document(''));
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StockTextInput
         maxLength={1000}
         value={text}
         defaultValue={''}
         onChangeText={(changedText: string) => setText(changedText)}
       />
-      <View style={styles.buttonGroup}>
-        <View style={styles.button}>
+      <SafeAreaView style={styles.buttonGroup}>
+        <SafeAreaView style={styles.button}>
           <Button
             title="Break down"
             color="rgb(128, 92, 92)"
             accessibilityLabel="Break down text to create document tree"
             onPress={() => setDocumentTree(new Document(text))}
           />
-        </View>
-        <View style={styles.button}>
+        </SafeAreaView>
+        <SafeAreaView style={styles.button}>
           <Button
             title="Clear"
             color="rgb(108, 92, 92)"
@@ -35,8 +36,8 @@ function StockScreen() {
               setDocumentTree(new Document(''));
             }}
           />
-        </View>
-        <View style={styles.button}>
+        </SafeAreaView>
+        <SafeAreaView style={styles.button}>
           <Button
             title="Stock"
             color="chocolate"
@@ -49,10 +50,10 @@ function StockScreen() {
               }
             }}
           />
-        </View>
-      </View>
+        </SafeAreaView>
+      </SafeAreaView>
       <DocumentTree documentTree={documentTree} initialNumToRender={10} />
-    </View>
+    </SafeAreaView>
   );
 }
 

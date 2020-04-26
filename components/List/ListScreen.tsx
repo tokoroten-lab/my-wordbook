@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import modelManager from '../../models/ModelManager';
 import WordInfoView from './WordInfoView';
 
@@ -7,15 +7,15 @@ function ListScreen() {
   const [wordInfoList] = useState(modelManager.getWordInfoList());
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         style={styles.wordInfoList}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        ItemSeparatorComponent={() => <SafeAreaView style={styles.separator} />}
         data={wordInfoList}
         renderItem={({item}) => <WordInfoView wordInfo={item} />}
         keyExtractor={(item) => item.word}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

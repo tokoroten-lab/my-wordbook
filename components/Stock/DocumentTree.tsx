@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, StyleSheet, View, SafeAreaView} from 'react-native';
+import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import Document from '../../models/Document';
 import ParagraphTree from './ParagraphTree';
 
@@ -19,7 +19,7 @@ function DocumentTree(props: Props) {
     <SafeAreaView style={styles.container}>
       <FlatList
         style={styles.paragraphList}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        ItemSeparatorComponent={() => <SafeAreaView style={styles.separator} />}
         data={documentTree.paragraphs}
         renderItem={({item}) => (
           <ParagraphTree paragraphTree={item} initialNumToRender={100} />

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, FlatList, View, StyleSheet} from 'react-native';
+import {Text, FlatList, SafeAreaView, StyleSheet} from 'react-native';
 import Paragraph from '../../models/Paragraph';
 import SentenceTree from './SentenceTree';
 
@@ -16,7 +16,7 @@ function ParagraphTree(props: Props) {
   }, [props.paragraphTree]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.paragraph}>{paragraphTree.normal}</Text>
       <FlatList
         style={styles.sentenceList}
@@ -27,7 +27,7 @@ function ParagraphTree(props: Props) {
         keyExtractor={(_, index) => String(index)}
         initialNumToRender={props.initialNumToRender}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, SafeAreaView, StyleSheet} from 'react-native';
 import Word from '../../models/Word';
 
 interface Props {
@@ -14,9 +14,9 @@ function WordTree(props: Props) {
   }, [props.wordTree]);
 
   return (
-    <View>
+    <SafeAreaView>
       <Text style={styles.word}>{wordTree.normal}</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 

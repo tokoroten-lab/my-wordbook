@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, View, Button} from 'react-native';
+import {StyleSheet, SafeAreaView, Button} from 'react-native';
 
 function HomeScreen({navigation}: {navigation: any}) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Button onPress={() => navigation.openDrawer()} title="Open menu" />
-    </View>
+    </SafeAreaView>
   );
 }
 

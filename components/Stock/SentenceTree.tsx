@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, FlatList, View, StyleSheet} from 'react-native';
+import {Text, FlatList, SafeAreaView, StyleSheet} from 'react-native';
 import Sentence from '../../models/Sentence';
 import WordTree from './WordTree';
 
@@ -16,7 +16,7 @@ function SentenceTree(props: Props) {
   }, [props.sentenceTree]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.sentence}>{sentenceTree.normal}</Text>
       <FlatList
         style={styles.wordList}
@@ -25,7 +25,7 @@ function SentenceTree(props: Props) {
         keyExtractor={(_, index) => String(index)}
         initialNumToRender={props.initialNumToRender}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
