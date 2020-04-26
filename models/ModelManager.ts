@@ -3,7 +3,7 @@ import Document from './Document';
 import Pragraph from './Paragraph';
 import Sentence from './Sentence';
 import Word from './Word';
-import WordInfoSchema, {WordInfoType} from './WordInfo';
+import WordInfo, {WordInfoType} from './WordInfo';
 
 class ModelManager {
   private static _instance: ModelManager;
@@ -16,7 +16,7 @@ class ModelManager {
         Pragraph.schema,
         Sentence.schema,
         Word.schema,
-        WordInfoSchema,
+        WordInfo.schema,
       ],
     });
   }
