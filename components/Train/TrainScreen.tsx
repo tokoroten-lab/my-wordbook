@@ -64,7 +64,7 @@ function TrainScreen() {
           <Button
             title="Bad"
             color="#5f9ea0"
-            accessibilityLabel="Good"
+            accessibilityLabel="Bad"
             onPress={() => recognizeWord(-1)}
           />
         </SafeAreaView>
