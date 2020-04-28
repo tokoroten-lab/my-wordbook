@@ -44,7 +44,7 @@ function StockScreen() {
             accessibilityLabel="Stock document tree into database"
             onPress={() => {
               if (documentTree.raw !== '') {
-                modelManager.stock(documentTree);
+                modelManager.stockDocument(documentTree);
                 setText('');
                 setDocumentTree(new Document(''));
               }
