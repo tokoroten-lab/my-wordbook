@@ -101,6 +101,16 @@ class ModelManager {
     return wordInfoList.splice(0, limit);
   }
 
+  public recognizeWord(wordInfo: RealmWordInfoType, diffRecognition: number) {
+    this.realm.write(() => {
+      if (diffRecognition < 0) {
+        wordInfo.unrecognitionLevel -= diffRecognition;
+      } else {
+        wordInfo.recognitionLevel += diffRecognition;
+      }
+    });
+  }
+
   private updateWordInfo(word: Word): void {
     if (!this.getWordInfo(word)) {
       this.realm.write(() => {
