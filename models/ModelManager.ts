@@ -43,12 +43,12 @@ class ModelManager {
     return ModelManager._instance;
   }
 
-  public stock(document: Document): object {
+  public stockDocument(document: Document): object {
     let stockedDocument = {};
     const words: Word[] = document.words;
 
     words.forEach((word: Word) => {
-      this.updateWordInfo(word);
+      this.appearWord(word);
     });
 
     this.realm.write(() => {
@@ -111,7 +111,7 @@ class ModelManager {
     });
   }
 
-  private updateWordInfo(word: Word): void {
+  private appearWord(word: Word): void {
     if (!this.getWordInfo(word)) {
       this.realm.write(() => {
         this.realm.create('WordInfo', {
