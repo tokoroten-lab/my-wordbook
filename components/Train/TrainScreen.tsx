@@ -16,7 +16,7 @@ function selectWord(limit: number): RealmWordInfoType {
     isDescend: true,
   };
 
-  const words = modelManager.getWordInfoList([sortingAxis], limit);
+  const words = modelManager.getWordInfoList([sortingAxis], '', limit);
 
   shuffleWords(words);
 
