@@ -54,7 +54,12 @@ function ListScreen() {
           <Text style={styles.searchLabelText}>Search</Text>
         </SafeAreaView>
         <LineView />
-        <TextInput onChangeText={setSearchText} />
+        <SafeAreaView style={styles.searchInput}>
+          <TextInput
+            placeholder="Input to search word"
+            onChangeText={setSearchText}
+          />
+        </SafeAreaView>
         <LineView />
       </SafeAreaView>
       <SafeAreaView style={styles.sortingAxisList}>
@@ -140,6 +145,9 @@ const styles = StyleSheet.create({
   },
   searchLabelText: {
     fontSize: 18,
+  },
+  searchInput: {
+    paddingHorizontal: 4,
   },
   line: {
     borderBottomWidth: 1,
