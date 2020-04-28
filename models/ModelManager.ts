@@ -5,7 +5,7 @@ import Sentence from './Sentence';
 import Word from './Word';
 import WordInfo, {WordInfoType} from './WordInfo';
 
-type RealmWordInfoType = Realm.Object & WordInfoType;
+export type RealmWordInfoType = Realm.Object & WordInfoType;
 
 export type SortingAxisNameType =
   | 'word'
@@ -67,6 +67,7 @@ class ModelManager {
 
   public getWordInfoList(
     sortingAxes: SortingAxisType[] = [],
+    limit: number = 1000,
   ): RealmWordInfoType[] {
     const wordInfoList: RealmWordInfoType[] = this.realm
       .objects<WordInfoType>('WordInfo')
@@ -97,7 +98,17 @@ class ModelManager {
       return 0;
     });
 
-    return wordInfoList;
+    return wordInfoList.splice(0, limit);
+  }
+
+  public recognizeWord(wordInfo: RealmWordInfoType, diffRecognition: number) {
+    this.realm.write(() => {
+      if (diffRecognition < 0) {
+        wordInfo.unrecognitionLevel -= diffRecognition;
+      } else {
+        wordInfo.recognitionLevel += diffRecognition;
+      }
+    });
   }
 
   private updateWordInfo(word: Word): void {
