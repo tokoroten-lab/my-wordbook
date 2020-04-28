@@ -25,8 +25,8 @@ function SortingAxisNamePicker(props: Props) {
         }}>
         <Picker.Item label="Word" value="word" />
         <Picker.Item label="Count" value="count" />
-        <Picker.Item label="Recognition" value="recognition" />
-        <Picker.Item label="Unrecognition" value="unrecognition" />
+        <Picker.Item label="Recognition" value="recognitionLevel" />
+        <Picker.Item label="Unrecognition" value="unrecognitionLevel" />
         <Picker.Item label="Evaluation" value="evaluation" />
       </Picker>
     </SafeAreaView>
