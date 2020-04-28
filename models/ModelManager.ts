@@ -72,7 +72,7 @@ class ModelManager {
   ): RealmWordInfoType[] {
     const wordInfoList: RealmWordInfoType[] = this.realm
       .objects<WordInfoType>('WordInfo')
-      .filtered(`word CONTAINS '${searchText}'`)
+      .filtered(`word CONTAINS '${searchText.toLowerCase()}'`)
       .slice();
 
     wordInfoList.sort((lhs: RealmWordInfoType, rhs: RealmWordInfoType) => {
