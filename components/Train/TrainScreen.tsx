@@ -1,12 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, Text, Button} from 'react-native';
+import modelManager, {
+  RealmWordInfoType,
+  SortingAxisType,
+} from '../../models/ModelManager';
+import WordInfo from '../../models/WordInfo';
+
+function shuffleWords(words: RealmWordInfoType[]): void {
+  words.sort(() => Math.random() - 0.5);
+}
+
+function selectWord(limit: number): RealmWordInfoType {
+  const sortingAxis: SortingAxisType = {
+    name: 'evaluation',
+    isDescend: true,
+  };
+
+  const words = modelManager.getWordInfoList([sortingAxis], limit);
+
+  shuffleWords(words);
+
+  return words[0];
+}
 
 function TrainScreen() {
+  const WORDS_LIMIT = 10;
+
+  const [wordInfo, setWordInfo] = useState<RealmWordInfoType>(
+    selectWord(WORDS_LIMIT),
+  );
+
+  const recognizeWord = (diffRecognition: number): void => {
+    setWordInfo(selectWord(WORDS_LIMIT));
+    modelManager.recognizeWord(wordInfo, diffRecognition);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.wordInfo}>
-        <Text style={styles.word}>Word</Text>
-        <Text style={styles.evaluation}>123.456789</Text>
+        <Text style={styles.word}>{wordInfo.word}</Text>
+        <Text style={styles.evaluation}>
+          {WordInfo.calcEvaluationFromWordInfo(wordInfo)}
+        </Text>
       </SafeAreaView>
       <SafeAreaView style={styles.buttonGroup}>
         <SafeAreaView style={styles.button}>
@@ -14,7 +49,7 @@ function TrainScreen() {
             title="Complete"
             color="#d2691e"
             accessibilityLabel="Complete"
-            onPress={() => console.log('complete')}
+            onPress={() => recognizeWord(100)}
           />
         </SafeAreaView>
         <SafeAreaView style={styles.button}>
@@ -22,7 +57,7 @@ function TrainScreen() {
             title="Good"
             color="#805c5c"
             accessibilityLabel="Good"
-            onPress={() => console.log('good')}
+            onPress={() => recognizeWord(1)}
           />
         </SafeAreaView>
         <SafeAreaView style={styles.button}>
@@ -30,7 +65,7 @@ function TrainScreen() {
             title="Bad"
             color="#5f9ea0"
             accessibilityLabel="Good"
-            onPress={() => console.log('bad')}
+            onPress={() => recognizeWord(-1)}
           />
         </SafeAreaView>
         <SafeAreaView style={styles.button}>
@@ -38,7 +73,7 @@ function TrainScreen() {
             title="Incomplete"
             color="#483d8b"
             accessibilityLabel="Incomplete"
-            onPress={() => console.log('incomplete')}
+            onPress={() => recognizeWord(-100)}
           />
         </SafeAreaView>
       </SafeAreaView>
