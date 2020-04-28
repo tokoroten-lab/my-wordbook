@@ -9,13 +9,23 @@ interface Props {
 function WordInfoView(props: Props) {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{props.wordInfo.word}</Text>
-      <Text>Appear count: {props.wordInfo.count}</Text>
-      <Text>Recognition level: {props.wordInfo.recognitionLevel}</Text>
-      <Text>Unrecognition level: {props.wordInfo.unrecognitionLevel}</Text>
-      <Text>
-        Evaluation: {WordInfo.calcEvaluationFromWordInfo(props.wordInfo)}
-      </Text>
+      <SafeAreaView style={styles.rightContainer}>
+        <Text style={styles.word}>{props.wordInfo.word}</Text>
+      </SafeAreaView>
+      <SafeAreaView style={styles.rightContainer}>
+        <Text style={styles.wordInfo}>
+          Appear count: {props.wordInfo.count}
+        </Text>
+        <Text style={styles.wordInfo}>
+          Recognition level: {props.wordInfo.recognitionLevel}
+        </Text>
+        <Text style={styles.wordInfo}>
+          Unrecognition level: {props.wordInfo.unrecognitionLevel}
+        </Text>
+        <Text style={styles.wordInfo}>
+          Evaluation: {WordInfo.calcEvaluationFromWordInfo(props.wordInfo)}
+        </Text>
+      </SafeAreaView>
     </SafeAreaView>
   );
 }
@@ -23,6 +33,21 @@ function WordInfoView(props: Props) {
 const styles = StyleSheet.create({
   container: {
     padding: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  leftContainer: {
+    flex: 1,
+  },
+  rightContainer: {
+    flex: 1,
+  },
+  word: {
+    fontSize: 22,
+  },
+  wordInfo: {
+    color: '#4a3b12',
   },
 });
 
