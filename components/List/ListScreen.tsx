@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  TextInput,
+} from 'react-native';
 import modelManager, {
   SortingAxisType,
   SortingAxisNameType,
@@ -7,10 +13,16 @@ import modelManager, {
 import WordInfoView from './WordInfoView';
 import SortingAxis from './SortingAxis';
 
+function LineView() {
+  return <SafeAreaView style={styles.line} />;
+}
+
 function ListScreen() {
   const [wordInfoList, setWordInfoList] = useState(
     modelManager.getWordInfoList(),
   );
+
+  const [searchText, setSearchText] = useState('');
 
   const [primarySortingAxis, setPrimarySortingAxis] = useState<SortingAxisType>(
     {
@@ -28,12 +40,23 @@ function ListScreen() {
 
   useEffect(() => {
     setWordInfoList(
-      modelManager.getWordInfoList([primarySortingAxis, secondarySortingAxis]),
+      modelManager.getWordInfoList(
+        [primarySortingAxis, secondarySortingAxis],
+        searchText,
+      ),
     );
-  }, [primarySortingAxis, secondarySortingAxis]);
+  }, [searchText, primarySortingAxis, secondarySortingAxis]);
 
   return (
     <SafeAreaView style={styles.container}>
+      <SafeAreaView>
+        <SafeAreaView style={styles.searchLabel}>
+          <Text style={styles.searchLabelText}>Search</Text>
+        </SafeAreaView>
+        <LineView />
+        <TextInput onChangeText={setSearchText} />
+        <LineView />
+      </SafeAreaView>
       <SafeAreaView style={styles.sortingAxisList}>
         <SortingAxis
           axisLevel="Primary"
@@ -78,6 +101,7 @@ function ListScreen() {
           }}
         />
       </SafeAreaView>
+      <LineView />
       <SafeAreaView style={styles.wordInfoList}>
         <FlatList
           ItemSeparatorComponent={() => (
@@ -102,12 +126,24 @@ const styles = StyleSheet.create({
   },
   wordInfoList: {
     flex: 1,
+    marginTop: 8,
   },
   separator: {
     borderBottomColor: 'chocolate',
     borderBottomWidth: 1,
     padding: 4,
     margin: 8,
+  },
+  searchLabel: {
+    paddingVertical: 8,
+    paddingLeft: 4,
+  },
+  searchLabelText: {
+    fontSize: 18,
+  },
+  line: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'chocolate',
   },
 });
 

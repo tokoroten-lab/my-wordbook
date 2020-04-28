@@ -67,10 +67,12 @@ class ModelManager {
 
   public getWordInfoList(
     sortingAxes: SortingAxisType[] = [],
+    searchText: string = '',
     limit: number = 1000,
   ): RealmWordInfoType[] {
     const wordInfoList: RealmWordInfoType[] = this.realm
       .objects<WordInfoType>('WordInfo')
+      .filtered(`word CONTAINS '${searchText}'`)
       .slice();
 
     wordInfoList.sort((lhs: RealmWordInfoType, rhs: RealmWordInfoType) => {
