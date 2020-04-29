@@ -16,7 +16,6 @@
     "@react-navigation/native": "^5.1.5",
     "@react-navigation/stack": "^5.2.10",
     "axios": "^0.19.2",
-    "cheerio": "^1.0.0-rc.3",
     "compromise": "^13.1.1",
     "compromise-paragraphs": "0.0.4",
     "compromise-sentences": "0.0.5",
