@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, SafeAreaView, Text, Button} from 'react-native';
 import themeManager from '../../theme/ThemeManager';
 import modelManager, {
@@ -6,6 +6,8 @@ import modelManager, {
   SortingAxisType,
 } from '../../models/ModelManager';
 import WordInfo from '../../models/WordInfo';
+import axios from 'axios';
+import cheerio from 'react-native-cheerio';
 
 function shuffleWords(words: RealmWordInfoType[]): void {
   words.sort(() => Math.random() - 0.5);
@@ -31,10 +33,32 @@ function TrainScreen() {
     selectWord(WORDS_LIMIT),
   );
 
+  const [wordMeaning, setWordMeaning] = useState('');
+
+  const [isDisplayingWordMeaning, setIsDisplayingWordMeaning] = useState(false);
+
   const recognizeWord = (diffRecognition: number): void => {
     setWordInfo(selectWord(WORDS_LIMIT));
+    setIsDisplayingWordMeaning(false);
     modelManager.recognizeWord(wordInfo, diffRecognition);
   };
+
+  const setMeaning = (word: string) => {
+    setWordMeaning('');
+    axios
+      .get(`https://ejje.weblio.jp/content/${word}`)
+      .then(({data}) => {
+        const $ = cheerio.load(data);
+        setWordMeaning($('td.content-explanation.ej').text());
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    setMeaning(wordInfo.word);
+  }, [wordInfo]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -77,6 +101,21 @@ function TrainScreen() {
             onPress={() => recognizeWord(-100)}
           />
         </SafeAreaView>
+        <SafeAreaView
+          style={StyleSheet.flatten([
+            styles.button,
+            styles.displayMeaningButton,
+          ])}>
+          <Button
+            title="Display meaning"
+            color={themeManager.currentTheme.incompleteButtonBackground}
+            accessibilityLabel="Display meaning"
+            onPress={() => setIsDisplayingWordMeaning(true)}
+          />
+        </SafeAreaView>
+      </SafeAreaView>
+      <SafeAreaView>
+        {isDisplayingWordMeaning ? <Text>{wordMeaning}</Text> : null}
       </SafeAreaView>
     </SafeAreaView>
   );
@@ -103,6 +142,9 @@ const styles = StyleSheet.create({
   buttonGroup: {},
   button: {
     paddingVertical: 4,
+  },
+  displayMeaningButton: {
+    marginTop: 20,
   },
 });
 
