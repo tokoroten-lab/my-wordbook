@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Text, FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import Sentence from '../../models/Sentence';
 import WordTree from './WordTree';
 
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
   container: {},
   sentence: {
     padding: 8,
+    color: themeManager.currentTheme.secondaryText,
   },
   wordList: {
     flexDirection: 'row',
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginHorizontal: 8,
     padding: 4,
-    backgroundColor: 'bisque',
+    backgroundColor: themeManager.currentTheme.quaternaryBackground,
   },
 });
 

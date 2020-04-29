@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import Document from '../../models/Document';
 import ParagraphTree from './ParagraphTree';
 
@@ -37,10 +38,10 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   paragraphList: {
-    backgroundColor: 'cornsilk',
+    backgroundColor: themeManager.currentTheme.secondaryBackground,
   },
   separator: {
-    borderBottomColor: 'chocolate',
+    borderBottomColor: themeManager.currentTheme.separator,
     borderBottomWidth: 1,
     padding: 4,
     margin: 8,

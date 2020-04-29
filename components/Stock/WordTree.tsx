@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Text, SafeAreaView, StyleSheet} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import Word from '../../models/Word';
 
 interface Props {
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginRight: 6,
     marginTop: 4,
+    color: themeManager.currentTheme.secondaryText,
   },
 });
 

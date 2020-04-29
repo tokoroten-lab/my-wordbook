@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
 } from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import modelManager, {
   SortingAxisType,
   SortingAxisNameType,
@@ -124,6 +125,7 @@ function ListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: themeManager.currentTheme.primaryBackground,
   },
   sortingAxisList: {
     alignItems: 'flex-end',
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   separator: {
-    borderBottomColor: 'chocolate',
+    borderBottomColor: themeManager.currentTheme.separator,
     borderBottomWidth: 1,
     padding: 4,
     margin: 8,
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
   },
   line: {
     borderBottomWidth: 1,
-    borderBottomColor: 'chocolate',
+    borderBottomColor: themeManager.currentTheme.separator,
   },
 });
 

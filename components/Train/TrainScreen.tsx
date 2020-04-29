@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, Text, Button} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import modelManager, {
   RealmWordInfoType,
   SortingAxisType,
@@ -47,7 +48,7 @@ function TrainScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Complete"
-            color="#d2691e"
+            color={themeManager.currentTheme.completeButtonBackground}
             accessibilityLabel="Complete"
             onPress={() => recognizeWord(100)}
           />
@@ -55,7 +56,7 @@ function TrainScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Good"
-            color="#805c5c"
+            color={themeManager.currentTheme.goodButtonBackground}
             accessibilityLabel="Good"
             onPress={() => recognizeWord(1)}
           />
@@ -63,7 +64,7 @@ function TrainScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Bad"
-            color="#5f9ea0"
+            color={themeManager.currentTheme.badButtonBackground}
             accessibilityLabel="Bad"
             onPress={() => recognizeWord(-1)}
           />
@@ -71,7 +72,7 @@ function TrainScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Incomplete"
-            color="#483d8b"
+            color={themeManager.currentTheme.incompleteButtonBackground}
             accessibilityLabel="Incomplete"
             onPress={() => recognizeWord(-100)}
           />
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
+    backgroundColor: themeManager.currentTheme.primaryBackground,
   },
   wordInfo: {
     alignItems: 'center',
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
   },
   evaluation: {
     fontSize: 18,
-    color: '#dc143c',
+    color: themeManager.currentTheme.accentText,
   },
   buttonGroup: {},
   button: {

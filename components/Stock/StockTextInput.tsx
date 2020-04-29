@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
+import themeManagaer from '../../theme/ThemeManager';
 
 interface Props {
   maxLength: number;
@@ -23,7 +24,7 @@ function StockTextInput(props: Props) {
       defaultValue={props.defaultValue}
       multiline
       maxLength={props.maxLength}
-      underlineColorAndroid="chocolate"
+      underlineColorAndroid={themeManagaer.currentTheme.separator}
       onChangeText={(changedText: string) => {
         setText(changedText);
         if (props.onChangeText) {
