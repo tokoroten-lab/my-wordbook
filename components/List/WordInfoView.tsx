@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import WordInfo, {WordInfoType} from '../../models/WordInfo';
 
 interface Props {
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   wordInfo: {
-    color: '#4a3b12',
+    color: themeManager.currentTheme.teritaryText,
   },
 });
 

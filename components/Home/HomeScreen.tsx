@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, Button} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 
 function HomeScreen({navigation}: {navigation: any}) {
   return (
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: themeManager.currentTheme.primaryBackground,
   },
 });
 

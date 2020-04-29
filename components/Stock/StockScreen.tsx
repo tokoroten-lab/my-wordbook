@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Button, SafeAreaView} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import modelManager from '../../models/ModelManager';
 import Document from '../../models/Document';
 import StockTextInput from './StockTextInput';
@@ -21,7 +22,7 @@ function StockScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Break down"
-            color="rgb(128, 92, 92)"
+            color={themeManager.currentTheme.primaryButton}
             accessibilityLabel="Break down text to create document tree"
             onPress={() => setDocumentTree(new Document(text))}
           />
@@ -29,7 +30,7 @@ function StockScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Clear"
-            color="rgb(108, 92, 92)"
+            color={themeManager.currentTheme.secondaryButton}
             accessibilityLabel="Clear text and document tree"
             onPress={() => {
               setText('');
@@ -40,7 +41,7 @@ function StockScreen() {
         <SafeAreaView style={styles.button}>
           <Button
             title="Stock"
-            color="chocolate"
+            color={themeManager.currentTheme.teritaryButton}
             accessibilityLabel="Stock document tree into database"
             onPress={() => {
               if (documentTree.raw !== '') {
@@ -60,7 +61,7 @@ function StockScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 4,
+    backgroundColor: themeManager.currentTheme.primaryBackground,
   },
   buttonGroup: {
     flexDirection: 'row',

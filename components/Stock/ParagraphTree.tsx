@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Text, FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import themeManager from '../../theme/ThemeManager';
 import Paragraph from '../../models/Paragraph';
 import SentenceTree from './SentenceTree';
 
@@ -35,11 +36,12 @@ const styles = StyleSheet.create({
   container: {},
   paragraph: {
     padding: 12,
+    color: themeManager.currentTheme.secondaryText,
   },
   sentenceList: {
     marginBottom: 8,
     marginHorizontal: 8,
-    backgroundColor: 'papayawhip',
+    backgroundColor: themeManager.currentTheme.teritaryBackground,
   },
 });
 
